@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+.styled-checkbox {
+  position: absolute;
+  opacity: 0;
+}
+.styled-checkbox + label {
+  position: relative;
+  cursor: pointer;
+  padding: 0;
+}
+.styled-checkbox + label:before {
+  content: "";
+  margin-right: 10px;
+  display: inline-block;
+  vertical-align: text-top;
+  width: 20px;
+  height: 20px;
+  background: white;
+}
+
+.styled-checkbox:checked + label:before {
+  background: #f35429;
+}
+.styled-checkbox:checked + label:after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 9px;
+  background: white;
+  width: 2px;
+  height: 2px;
+  box-shadow: 2px 0 0 white, 4px 0 0 white, 4px -2px 0 white, 4px -4px 0 white, 4px -6px 0 white, 4px -8px 0 white;
+  transform: rotate(45deg);
+}
+
+html {
+  background: lightgray;
+}
+
+body {
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+
+
+
+
+
+</style>
+<body>
+    <input class="styled-checkbox" id="styled-checkbox-2" type="checkbox" value="value2" checked>
+    <label for="styled-checkbox-2">CSS Only</label>
+
+        <div id="container"></div>
+        <br>
+        <div>
+        <button id="generate">Generate</button>
+        </div>
+
+</body>
+<script>
+    document.getElementById('generate').onclick = function() {
+ 
+ var values = ["india", "china", "pakistan", "russia",'usa','uae'];
+
+ var select = document.createElement("select");
+ select.value = "pets";
+ select.id = "pets";
+
+ for (const val of values)
+ {
+     var option = document.createElement("option");
+     option.value = val;
+     option.text = val.charAt(0).toUpperCase() + val.slice(1);
+     select.appendChild(option);
+ }
+
+ var label = document.createElement("label");
+ label.innerHTML = "Country: "
+ label.htmlFor = "pets";
+
+ document.getElementById("container").appendChild(label).appendChild(select);
+}
+</script>
+</html>

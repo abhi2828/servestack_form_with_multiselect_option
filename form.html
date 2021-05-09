@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js">
+    </script>
+    <title>form</title>
+</head>
+<style>
+    /* button {
+        float: right;
+        padding: 8px 12px;
+        margin: 8px 0 0;
+        font-family: 'Montserrat', sans-serif;
+        border: 2px solid #78788c;
+        background: 0;
+        color: #5a5a6e;
+        cursor: pointer;
+        transition: all .3s
+    } */
+
+    /* button:hover {
+        background: #78788c;
+        color: #fff
+    } */
+    body {
+        background: #e6e6e6;
+        margin: 0
+    }
+
+    h2,p,b {
+        color: #5a5a5a;
+    }
+
+    .form {
+        width: 70%;
+        height: 440px;
+        background: #e6e6e6;
+        border-radius: 8px;
+        margin: calc(50vh - 260px) auto;
+        padding: 20px 30px;
+        max-width: calc(100vw - 40px);
+        box-sizing: border-box;
+        font-family: 'Montserrat', sans-serif;
+        position: relative
+    }
+
+    input {
+        padding: 10px 10px 0 10px;
+        box-sizing: border-box;
+        background: none;
+        outline: none;
+        resize: none;
+        border: 0;
+        font-family: 'Montserrat', sans-serif;
+        transition: all .3s;
+        border-bottom: 2px solid #bebed2
+    }
+
+    input[type=number] {
+        width: 80px;
+    }
+
+    /* hide arrows in input type number  */
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+
+    input[type=checkbox] {
+        box-sizing: border-box;
+        padding: 0;
+        width: 30px;
+    }
+
+    p:before {
+        content: attr(type);
+        display: block;
+        margin: 28px 0 0;
+        font-size: 14px;
+        color: #5a5a5a;
+        font-weight: 700;
+    }
+
+    .inner_form_div {
+        box-shadow: 0 0 24px -10px #000;
+        padding: 15px 30px;
+        margin: 30px 0;
+    }
+
+    /* wraper */
+    .expand {
+        display: inline-block;
+    }
+
+    .expand:after {
+        display: block;
+        content: "";
+        border-bottom: 3px solid #78788c;
+        transform: scaleX(0);
+        transition: transform 0.5s;
+    }
+
+    .expand:hover:after {
+        transform: scaleX(1);
+    }
+
+    .styled-checkbox {
+        position: absolute;
+        opacity: 0;
+    }
+
+    .styled-checkbox+label {
+        position: relative;
+        cursor: pointer;
+        padding: 0;
+    }
+
+    .styled-checkbox+label:before {
+        content: "";
+        margin-right: 10px;
+        display: inline-block;
+        vertical-align: text-top;
+        width: 20px;
+        height: 20px;
+        border: 1px solid red;
+    }
+
+    .styled-checkbox:checked+label:before {
+        background: #f35429;
+    }
+
+    .styled-checkbox:checked+label:after {
+        content: "";
+        position: absolute;
+        left: 5px;
+        top: 11px;
+        background: white;
+        width: 2px;
+        height: 2px;
+        box-shadow: 2px 0 0 white, 4px 0 0 white, 4px -2px 0 white, 4px -4px 0 white, 4px -6px 0 white, 4px -8px 0 white;
+        transform: rotate(45deg);
+    }
+
+    .bootstrap-select .dropdown-toggle:focus {
+        outline: thin dotted #333333 !important;
+        outline: 5px auto -webkit-focus-ring-color !important;
+        outline-offset: -2px;
+        height: 42px !important;
+    }
+
+    .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+        /* width: 150px !important; */
+        border-radius: 2px;
+        border: 1px solid;
+        height: 45px !important;
+    }
+
+    .dropdown-menu.show {
+        max-height: 495px;
+        overflow: hidden;
+        min-height: 46px;
+        position: absolute;
+        transform: translate3d(0px, 23px, 0px);
+        top: 15px !important;
+        left: 0px;
+        will-change: transform;
+    }
+
+    .bootstrap-select>.dropdown-toggle.bs-placeholder,
+    .bootstrap-select>.dropdown-toggle.bs-placeholder:hover,
+    .bootstrap-select>.dropdown-toggle.bs-placeholder:focus,
+    .bootstrap-select>.dropdown-toggle.bs-placeholder:active,
+    .dropdown_option {
+        color: #2a2727 !important;
+        height: 42px !important;
+    }
+
+    .btn-light:hover {
+        color: #2a2727;
+        background-color: #e2e6ea;
+        border-color: #dae0e5;
+        height: 42px !important;
+    }
+
+    lable {
+        line-height: 2;
+    }
+
+    .addbutton_parent {
+        display: flex;
+        justify-content: center;
+    }
+
+    .btn-danger {
+        color: #fff;
+        background-color: #dc3545;
+        border-color: #dc3545;
+        width: 100px;
+    }
+    .btn-success{
+        width: 100px;
+    }
+    .bootstrap-select .dropdown-menu.active li a span.text {
+    display: inline-block;
+    color: #fff;
+}
+
+    /* form#form1 {
+        width: 80%;
+        margin: 30px;
+    } */
+</style>
+
+<body>
+    <section>
+        <h2 class="text-center pt-3">DeadBolt Configuration</h2>
+        <form id="form1" class="form" runat="server">
+            <p type="Safe Page:">
+                <input class="input" type="url" placeholder="Enter your link here.."></input>
+            </p>
+            <div class="inner_form_div text-center">
+                <p> Force next <input class="input" type="number" aria-placeholder="abhay"> visitors to see the safe
+                    page
+                </p>
+                <b>OR</b>
+                <p>
+                    <input class="styled-checkbox" id="styled-checkbox-2" type="checkbox" value="value2" checked>
+                    <label for="styled-checkbox-2">Force every visitors to see the safe page</label>
+                </p>
+            </div>
+            <b>OR</b>
+            <p>Force visitors to see the safe page based on their country & regions</p>
+
+            <div>
+                <div id="TextBoxContainer">
+                    <!--Textboxes will be added here -->
+                </div>
+                <br />
+                <table class="table" id="dataTable">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <lable> Country</lable>
+                            </td>
+                            <td>
+                                <select class="dropdown_option" style="width: 200px !important;" name="" id="">
+                                    <option value="ind">ind</option>
+                                    <option value="Aus">Aus</option>
+                                    <option value="USA">USA</option>
+                                </select>
+                            </td>
+                            <td>
+                                <lable> Country Region </lable>
+                            </td>
+                            <td>
+                                <select data-placeholder="Choose tags ..." name="tags[]" class="selectpicker" multiple
+                                    data-live-search="true">
+                                    <option value="MH">MH</option>
+                                    <option value="UP">UP</option>
+                                </select>
+                            </td>
+                            <td><input type='button' value='Remove' class='delete_upload btn btn-danger'></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="addbutton_parent">
+                    <input class="btn btn-success" id="btnAdd" type="button" value="Add"
+                        onClick="addRow('dataTable')" />
+                </div>
+
+            </div>
+            <br><br>
+        </form>
+    </section>
+
+    <script type="text/javascript">
+        function addRow(tableID) {
+
+
+            var table = document.getElementById(tableID);
+
+            var row = table.insertRow(table.rows.length);
+
+            var cel1 = row.insertCell(0);
+            cel1.innerHTML = "<lable> Country</lable>";
+
+            var cel2 = row.insertCell(1);
+            cel2.innerHTML =
+                `<select class="dropdown_option" style="width: 100px !important;" name="" id=""><option value="ind">ind</option><option value="Aus">Aus</option><option value="USA">USA</option></select>`;
+
+            var cel3 = row.insertCell(2);
+            cel3.innerHTML = "<lable> Country Region </lable>";
+
+            var cel4 = row.insertCell(3);
+            cel4.innerHTML =
+                `<select class='selectpicker dropdown_option' data-count-selected-text="select" multiple data-live-search='true'><option value='MH'>MH</option></select>`;
+
+            var cel4 = row.insertCell(4);
+            cel4.innerHTML = "<input type='button' value='Remove' class='delete_upload btn btn-danger'>";
+
+            $('select').selectpicker();
+
+
+        }
+
+        function deleteRow(tableID) {
+            try {
+                var table = document.getElementById(tableID);
+                var rowCount = table.rows.length;
+
+                for (var i = 0; i < rowCount; i++) {
+                    var row = table.rows[i];
+                    var chkbox = row.cells[0].childNodes[0];
+
+                    if (null != chkbox && true == chkbox.checked) {
+                        table.deleteRow(i);
+                        rowCount--;
+                        i--;
+                    }
+                }
+            } catch (e) {
+                alert(e);
+            }
+        }
+
+        $(function () {
+            $('.filter-option-inner-inner').text('select');
+        });
+
+        $('#dataTable').on('click', '.delete_upload', function () {
+            $(this).parent().parent().remove();
+        });
+    </script>
+</body>
+<script>
+    $('.input').wrap('<div class="expand"></div>')
+</script>
+
+</html>

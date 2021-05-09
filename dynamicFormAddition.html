@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <hr />
+    <h5>Other Contacts</h5>
+    <div id="form-placeholder"></div>
+    <button id="btn-add" type="button" class="btn btn-primary">Add</button>
+    <hr />
+</body>
+<script>
+    function appendUserRow(id, user) {
+        var html = "<div id=\"opt-row." + id + "\" class=\"form-group row\">\n" +
+            "            <div class=\"col-3\">\n" +
+            "                <input required type=\"text\" class=\"form-control\" id=\"opt-type." + id +
+            "\" name=\"opt-type." + id + "\" placeholder=\"Type\" value=\"" + user.type + "\">\n" +
+            "            </div>\n" +
+            "            <div class=\"col-3\">\n" +
+            "                <input required type=\"text\" class=\"form-control\" id=\"opt-name." + id +
+            "\" name=\"opt-name." + id + "\" placeholder=\"Name\" value=\"" + user.name + "\">\n" +
+            "            </div>\n" +
+            "            <div class=\"col-3\">\n" +
+            "                <input required type=\"email\" class=\"form-control\" id=\"opt-email." + id +
+            "\" name=\"opt-email." + id + "\" placeholder=\"name@example.com\" value=\"" + user.email + "\">\n" +
+            "            </div>\n" +
+            "            <div class=\"col-2\">\n" +
+            "                <input required type=\"number\" class=\"form-control\" id=\"opt-no." + id +
+            "\" name=\"opt-no." + id + "\" placeholder=\"9876543210\" value=\"" + user.no + "\">\n" +
+            "            </div>\n" +
+            "             <button type=\"button\" onclick=\"delRow(" + id +
+            ")\" class=\"btn btn-danger\">Delete</button>\n" +
+            "        </div>";
+        $("#form-placeholder").append(html);
+    }
+
+    function delRow(id) {
+        var element = document.getElementById("opt-row." + id);
+        element.parentNode.removeChild(element);
+    }
+
+    $(document).ready(function () {
+        var count = 0;
+        $("#btn-add").click(function () {
+            appendUserRow(count++, {
+                type: "",
+                name: "",
+                email: "",
+                no: ""
+            })
+        });
+    });
+</script>
+
+</html>
